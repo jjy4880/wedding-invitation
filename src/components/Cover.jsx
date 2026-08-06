@@ -15,7 +15,7 @@ export default function Cover() {
         </div>
       </div>
 
-      <div className="cover-photo">
+      <div className={`cover-photo${cover ? '' : ' empty'}`}>
         {cover ? (
           <img src={cover} alt={`${groom.name} & ${bride.name}`} />
         ) : (
