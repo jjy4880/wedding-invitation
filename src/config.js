@@ -3,6 +3,12 @@
 //  (정지용 ♡ 권은미 실제 예식 정보 반영본)
 // ─────────────────────────────────────────────────────────────
 export const WEDDING = {
+  // 배포 주소 (카카오톡 공유 카드의 링크·썸네일에 사용 — 반드시 절대 URL)
+  site: {
+    url: 'https://jjy4880.github.io/wedding-invitation/',
+    ogImage: 'https://jjy4880.github.io/wedding-invitation/og-image.jpg',
+  },
+
   // 예식 일시 (ISO 8601, 한국 시간대 +09:00). 캘린더·디데이·날짜 표기가 여기서 자동 계산됩니다.
   dateTime: '2026-09-12T17:30:00+09:00',
 
