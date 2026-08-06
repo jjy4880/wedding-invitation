@@ -10,7 +10,6 @@
 - **갤러리** — 사진 그리드 + 라이트박스(좌우 넘김 · 키보드 지원)
 - **오시는 길** — 지도 영역 + 교통 안내 + 주소 복사 + 지도앱 바로가기
 - **마음 전하실 곳** — 신랑측/신부측 계좌 아코디언 + 원터치 복사
-- **RSVP** — 참석 의사 전달 폼
 - **방명록** — 축하 메시지 작성/삭제
 - **공유하기** — 링크 복사 / 시스템 공유 시트
 
@@ -46,12 +45,16 @@ npm run preview  # 빌드 결과 미리보기
    ```
 3. `images[0]` 이 커버 대표 사진으로 쓰입니다.
 
-### 지도 넣기
+### 지도 (카카오맵)
 
-`src/components/Location.jsx` 의 `map-placeholder` 부분을 실제 지도로 교체하세요.
+`src/components/KakaoMap.jsx` 가 Kakao Maps SDK로 지도를 렌더링합니다.
 
-- **카카오맵/네이버지도 "지도 퍼가기"** iframe 을 붙여넣거나
-- 지도 캡처 이미지를 `public/` 에 넣고 `<img src="./map.png" />` 로 표시
+1. [카카오 개발자센터](https://developers.kakao.com) → 앱 → **앱 키 → JavaScript 키** 발급
+2. **플랫폼 → Web → 사이트 도메인**에 배포 주소 등록
+   (예: `https://jjy4880.github.io`, 로컬 테스트 시 `http://localhost:5173` 도)
+3. `src/config.js` 의 `venue.kakaoAppKey` 에 JavaScript 키를 넣습니다.
+
+> 키가 비어 있으면 임시로 **구글 지도**가 표시됩니다.
 
 ## 🚀 GitHub Pages 배포
 
@@ -92,14 +95,14 @@ npm run deploy
 
 Settings → Pages → Source 를 **gh-pages 브랜치**로 지정합니다.
 
-## RSVP·방명록 실제 취합 (선택)
+## 방명록 실제 취합 (선택)
 
-기본 제공되는 RSVP/방명록은 **데모용으로 브라우저(localStorage)에만 저장**됩니다.
-하객 응답을 실제로 모으려면 무료 백엔드를 연결하세요. 추천 순서:
+기본 제공되는 방명록은 **데모용으로 브라우저(localStorage)에만 저장**됩니다.
+하객 메시지를 실제로 모으려면 무료 백엔드를 연결하세요. 추천 순서:
 
-- **Google Forms/Sheets** — 가장 간단. 폼 응답을 시트로 수집.
+- **Google Forms/Sheets** — 가장 간단. 응답을 시트로 수집.
 - **Supabase / Firebase Firestore** — 무료 티어로 실시간 DB 연동.
-- 연동 위치: `src/components/Rsvp.jsx`, `src/components/Guestbook.jsx` 의 저장 로직(`localStorage`)을 `fetch(...)` 호출로 교체.
+- 연동 위치: `src/components/Guestbook.jsx` 의 저장 로직(`localStorage`)을 `fetch(...)` 호출로 교체.
 
 ## 공유 미리보기(OG·카카오톡 카드) 테스트
 
