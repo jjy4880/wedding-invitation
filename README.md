@@ -107,7 +107,7 @@ Settings → Pages → Source 를 **gh-pages 브랜치**로 지정합니다.
 > 반드시 **공개 URL**(GitHub Pages 등)에 배포한 뒤 테스트하세요.
 
 **0. 배포 후 절대 URL 채우기** — `index.html` 의 `og:url` / `og:image` / `twitter:image` 의
-`https://example.github.io/wedding-invitation/` 를 실제 배포 주소로 교체합니다.
+`https://jjy4880.github.io/wedding-invitation/` 를 실제 배포 주소로 교체합니다.
 (카카오·페북은 상대경로를 무시하고 **절대 URL**만 읽습니다.)
 
 **1. 범용 미리보기 확인** — 배포 URL을 아래에 붙여넣으면 카드가 즉시 보입니다.
