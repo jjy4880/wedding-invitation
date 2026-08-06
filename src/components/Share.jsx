@@ -34,19 +34,6 @@ export default function Share({ notify }) {
     }
   }
 
-  const nativeShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({ title, text: desc, url: link })
-      } catch {
-        /* 사용자가 취소 */
-      }
-    } else {
-      const ok = await copyText(link)
-      notify(ok ? '링크가 복사되었습니다' : '공유를 지원하지 않는 환경입니다')
-    }
-  }
-
   const copyLink = async () => {
     const ok = await copyText(link)
     notify(ok ? '청첩장 링크가 복사되었습니다' : '복사에 실패했습니다')
@@ -67,16 +54,10 @@ export default function Share({ notify }) {
           </button>
         )}
 
-        <div className="share-row">
-          <button onClick={nativeShare}>
-            <span className="ic">↗</span>
-            공유하기
-          </button>
-          <button onClick={copyLink}>
-            <span className="ic">🔗</span>
-            링크 복사
-          </button>
-        </div>
+        <button className="link-btn" onClick={copyLink}>
+          <span className="ic">🔗</span>
+          링크 복사
+        </button>
       </Reveal>
     </section>
   )
