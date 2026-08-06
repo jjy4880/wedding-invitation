@@ -579,26 +579,71 @@ body {
   border-color: var(--accent);
   color: var(--accent-ink);
 }
+.subhead {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin: 34px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
 .transport {
   display: grid;
   gap: 18px;
 }
 .transport .item {
   display: grid;
-  grid-template-columns: 58px 1fr;
+  grid-template-columns: 74px 1fr;
   gap: 12px;
   align-items: start;
 }
 .transport .k {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-size: 13px;
   font-weight: 700;
   color: var(--accent-ink);
   padding-top: 1px;
 }
+.transport .t-ic {
+  color: var(--accent);
+  display: inline-flex;
+}
 .transport .v {
   font-size: 14px;
   color: var(--ink);
-  line-height: 1.6;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+.transport .v-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: normal;
+}
+.notices {
+  display: grid;
+  gap: 12px;
+}
+.notice {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.notice .n-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-ink);
+}
+.notice .n-desc {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.7;
 }
 
 /* ── 마음 전하실 곳 (계좌) ────────────────────────────────── */
