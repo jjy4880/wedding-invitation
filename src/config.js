@@ -39,10 +39,12 @@ export const WEDDING = {
     tel: '02-6418-5000',
     lat: 37.484005272438594,
     lng: 127.12278911775194,
-    // 카카오맵 표시용 JavaScript 앱키. 카카오 개발자센터에서 발급 후 넣으세요.
-    // (발급: https://developers.kakao.com → 앱 → 앱 키 → JavaScript 키)
-    // 비워두면 임시로 구글 지도가 표시됩니다.
-    kakaoAppKey: '',
+    // 카카오맵 표시용 JavaScript 앱키.
+    // 보안상 코드에 직접 넣지 않고 환경변수로 주입합니다.
+    //  · 로컬: 프로젝트 루트 .env.local 에  VITE_KAKAO_MAP_KEY=발급받은키
+    //  · 배포: GitHub 저장소 Secrets 의 VITE_KAKAO_MAP_KEY (Actions가 주입)
+    // 값이 없으면 임시로 구글 지도가 표시됩니다.
+    kakaoAppKey: import.meta.env.VITE_KAKAO_MAP_KEY || '',
     // 지도앱 바로가기 (하객이 클릭 시 해당 앱/웹으로 이동)
     naverMap: 'https://map.naver.com/p/search/더컨벤션 송파문정',
     kakaoMap:

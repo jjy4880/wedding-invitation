@@ -3,3 +3,8 @@ dist
 .DS_Store
 *.local
 .vite
+
+# 환경변수 (앱키 등 비밀값) — 저장소에 올리지 않음
+.env
+.env.*
+!.env.example
