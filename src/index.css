@@ -353,16 +353,21 @@ body {
 }
 .cal-cell.mark {
   position: relative;
+  isolation: isolate; /* ::before 의 z-index 가 섹션 배경 뒤로 넘어가지 않도록 */
   color: #fff;
   font-weight: 700;
 }
 .cal-cell.mark::before {
   content: '';
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--accent);
+  /* 테마(라이트/다크)와 무관하게 항상 잘 보이도록 고정 딥세이지 */
+  background: #566a52;
   z-index: -1;
 }
 
