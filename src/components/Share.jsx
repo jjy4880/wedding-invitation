@@ -17,7 +17,7 @@ export default function Share({ notify }) {
         content: {
           title,
           description: desc,
-          imageUrl: site.ogImage,
+          imageUrl: site.kakaoImage, // 텍스트 없이 인물 사진만
           link: { mobileWebUrl: link, webUrl: link },
         },
         buttons: [
