@@ -91,7 +91,7 @@ export const WEDDING = {
   // 상단 커버 슬라이드쇼 — 3초마다 크로스페이드로 전환됩니다.
   // 순서/사진은 자유롭게 바꾸세요. (첫 장이 대표 이미지)
   cover: {
-    interval: 3000, // 전환 간격(ms)
+    interval: 2000, // 전환 간격(ms)
     images: [
       './gallery/1.jpg',
       './gallery/2.jpg',
