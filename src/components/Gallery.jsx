@@ -15,11 +15,19 @@ export default function Gallery() {
       if (e.key === 'ArrowRight') setOpen((o) => (o + 1) % items.length)
       if (e.key === 'ArrowLeft') setOpen((o) => (o - 1 + items.length) % items.length)
     }
+    // 뷰어 열려 있는 동안 확대(핀치줌/더블탭) 방지
+    const preventZoom = (e) => e.preventDefault()
     document.body.style.overflow = 'hidden'
     window.addEventListener('keydown', onKey)
+    document.addEventListener('gesturestart', preventZoom) // Safari 핀치
+    document.addEventListener('gesturechange', preventZoom)
+    document.addEventListener('dblclick', preventZoom)
     return () => {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKey)
+      document.removeEventListener('gesturestart', preventZoom)
+      document.removeEventListener('gesturechange', preventZoom)
+      document.removeEventListener('dblclick', preventZoom)
     }
   }, [open, items.length])
 
@@ -65,6 +73,7 @@ export default function Gallery() {
             <img
               src={items[open]}
               alt={`웨딩 사진 ${open + 1}`}
+              draggable={false}
               onClick={(e) => e.stopPropagation()}
             />
           ) : (
