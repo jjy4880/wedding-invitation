@@ -9,6 +9,7 @@ export default function Gallery() {
   const n = items.length
 
   const [open, setOpen] = useState(null) // index or null
+  const [view, setView] = useState('carousel') // 'carousel' | 'grid'
   const touchX = useRef(null)
   const thumbsRef = useRef(null)
 
@@ -86,29 +87,78 @@ export default function Gallery() {
       <Reveal>
         <p className="eyebrow">Gallery</p>
         <h2 className="section-title">우리의 순간들</h2>
-        <div className="gallery-carousel" ref={carRef} onScroll={onCarScroll}>
-          {items.map((it, i) => (
-            <button
-              key={i}
-              className="gc-slide"
-              data-i={i}
-              onClick={() => setOpen(i)}
-              aria-label={`사진 ${i + 1} 크게 보기`}
-            >
-              {hasImages ? (
-                <img src={it} alt={`웨딩 사진 ${i + 1}`} loading="lazy" draggable={false} />
-              ) : (
-                <span className="idx">{i + 1}</span>
-              )}
-            </button>
-          ))}
+
+        <div className="gallery-toggle" role="group" aria-label="갤러리 보기 방식">
+          <button
+            className={`gt-btn${view === 'carousel' ? ' on' : ''}`}
+            onClick={() => setView('carousel')}
+            aria-pressed={view === 'carousel'}
+            aria-label="캐러셀 보기"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round">
+              <rect x="7" y="5" width="10" height="14" rx="2" />
+              <path d="M4 8v8M20 8v8" strokeLinecap="round" />
+            </svg>
+          </button>
+          <button
+            className={`gt-btn${view === 'grid' ? ' on' : ''}`}
+            onClick={() => setView('grid')}
+            aria-pressed={view === 'grid'}
+            aria-label="격자 보기"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <rect x="4" y="4" width="7" height="7" rx="1.4" />
+              <rect x="13" y="4" width="7" height="7" rx="1.4" />
+              <rect x="4" y="13" width="7" height="7" rx="1.4" />
+              <rect x="13" y="13" width="7" height="7" rx="1.4" />
+            </svg>
+          </button>
         </div>
-        <div className="gc-progress" aria-hidden="true">
-          <i style={{ width: `${((active + 1) / n) * 100}%` }} />
-        </div>
-        <div className="gc-count">
-          {active + 1} / {n}
-        </div>
+
+        {view === 'carousel' ? (
+          <>
+            <div className="gallery-carousel" ref={carRef} onScroll={onCarScroll}>
+              {items.map((it, i) => (
+                <button
+                  key={i}
+                  className="gc-slide"
+                  data-i={i}
+                  onClick={() => setOpen(i)}
+                  aria-label={`사진 ${i + 1} 크게 보기`}
+                >
+                  {hasImages ? (
+                    <img src={it} alt={`웨딩 사진 ${i + 1}`} loading="lazy" draggable={false} />
+                  ) : (
+                    <span className="idx">{i + 1}</span>
+                  )}
+                </button>
+              ))}
+            </div>
+            <div className="gc-progress" aria-hidden="true">
+              <i style={{ width: `${((active + 1) / n) * 100}%` }} />
+            </div>
+            <div className="gc-count">
+              {active + 1} / {n}
+            </div>
+          </>
+        ) : (
+          <div className="gallery-grid">
+            {items.map((it, i) => (
+              <button
+                key={i}
+                className="g-tile"
+                onClick={() => setOpen(i)}
+                aria-label={`사진 ${i + 1} 크게 보기`}
+              >
+                {hasImages ? (
+                  <img src={it} alt={`웨딩 사진 ${i + 1}`} loading="lazy" draggable={false} />
+                ) : (
+                  <span className="idx">{i + 1}</span>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
       </Reveal>
 
       {open !== null && (
