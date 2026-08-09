@@ -93,11 +93,11 @@ export const WEDDING = {
   cover: {
     interval: 2000, // 전환 간격(ms)
     images: [
+      './gallery/21.jpg',
       './gallery/1.jpg',
-      './gallery/2.jpg',
-      './gallery/3.jpg',
       './gallery/4.jpg',
-      './gallery/5.jpg',
+      './gallery/14.jpg',
+      './gallery/20.jpg',
     ],
   },
 
@@ -126,6 +126,7 @@ export const WEDDING = {
       './gallery/18.jpg',
       './gallery/19.jpg',
       './gallery/20.jpg',
+      './gallery/21.jpg',
     ],
   },
 
