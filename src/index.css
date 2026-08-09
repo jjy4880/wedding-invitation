@@ -198,12 +198,44 @@ body {
   margin: 28px 0;
   border-radius: 2px;
   overflow: hidden;
+  position: relative;
+  aspect-ratio: 1280 / 1919; /* 사진 비율 유지 (잘림 없음) */
 }
-/* 원본 비율 유지 — 잘리지 않게 표시 */
-.cover-photo img {
-  display: block;
+/* 크로스페이드 슬라이드 */
+.cover-slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.cover-slide.active {
+  opacity: 1;
+}
+/* 슬라이드 인디케이터(점) */
+.cover-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 2;
+}
+.cover-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.cover-dots span.on {
+  background: #fff;
+  transform: scale(1.2);
 }
 /* 사진 미등록 시 자리표시 영역 */
 .cover-photo.empty {
@@ -213,6 +245,12 @@ body {
   justify-content: center;
   background: linear-gradient(160deg, var(--accent-soft), var(--surface));
   border: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover-slide {
+    transition: none;
+  }
 }
 .cover-photo-hint {
   position: relative;
