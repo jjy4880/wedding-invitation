@@ -92,13 +92,7 @@ export const WEDDING = {
   // 순서/사진은 자유롭게 바꾸세요. (첫 장이 대표 이미지)
   cover: {
     interval: 2000, // 전환 간격(ms)
-    images: [
-      './gallery/21.jpg',
-      './gallery/1.jpg',
-      './gallery/4.jpg',
-      './gallery/14.jpg',
-      './gallery/20.jpg',
-    ],
+    images: ['./gallery/21.jpg', './gallery/22.jpg', './gallery/23.jpg'],
   },
 
   // 갤러리 — images[0] 이 커버 대표 사진으로 쓰입니다.
@@ -127,6 +121,8 @@ export const WEDDING = {
       './gallery/19.jpg',
       './gallery/20.jpg',
       './gallery/21.jpg',
+      './gallery/22.jpg',
+      './gallery/23.jpg',
     ],
   },
 
