@@ -448,38 +448,47 @@ body {
 }
 
 /* ── 갤러리 ───────────────────────────────────────────────── */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
+/* 모바일 스와이프 캐러셀 (양옆 peek) */
+.gallery-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 var(--pad);
+  margin: 4px calc(-1 * var(--pad)) 0;
+  padding: 4px var(--pad);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
-.g-tile {
-  aspect-ratio: 1;
+.gallery-carousel::-webkit-scrollbar {
+  display: none;
+}
+.gc-slide {
+  flex: 0 0 78%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  aspect-ratio: 3 / 4;
+  position: relative;
   border: none;
   padding: 0;
-  cursor: pointer;
+  margin: 0;
+  border-radius: 10px;
   overflow: hidden;
-  border-radius: 2px;
-  position: relative;
+  cursor: pointer;
   background: linear-gradient(135deg, var(--accent-soft), var(--surface));
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  box-shadow: 0 12px 30px -18px rgba(46, 43, 39, 0.55);
+  transition: transform 0.3s ease;
 }
-.g-tile:nth-child(3n) {
-  background: linear-gradient(135deg, var(--surface), var(--accent-soft));
+.gc-slide:active {
+  transform: scale(0.985);
 }
-.g-tile img {
+.gc-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.g-tile:hover {
-  opacity: 0.9;
-}
-.g-tile:active {
-  transform: scale(0.98);
-}
-.g-tile .idx {
+.gc-slide .idx {
   position: absolute;
   inset: 0;
   display: flex;
@@ -487,7 +496,30 @@ body {
   justify-content: center;
   color: var(--faint);
   font-family: var(--latin);
-  font-size: 18px;
+  font-size: 20px;
+}
+.gc-progress {
+  margin: 18px auto 0;
+  width: 64px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.gc-progress i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+.gc-count {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 
 /* lightbox */

@@ -12,6 +12,31 @@ export default function Gallery() {
   const touchX = useRef(null)
   const thumbsRef = useRef(null)
 
+  // 갤러리 캐러셀(그리드 대체)
+  const carRef = useRef(null)
+  const rafRef = useRef(0)
+  const [active, setActive] = useState(0)
+  const onCarScroll = () => {
+    cancelAnimationFrame(rafRef.current)
+    rafRef.current = requestAnimationFrame(() => {
+      const root = carRef.current
+      if (!root) return
+      const slides = root.querySelectorAll('.gc-slide')
+      const center = root.scrollLeft + root.clientWidth / 2
+      let best = 0
+      let bestD = Infinity
+      slides.forEach((s, i) => {
+        const c = s.offsetLeft + s.offsetWidth / 2
+        const d = Math.abs(c - center)
+        if (d < bestD) {
+          bestD = d
+          best = i
+        }
+      })
+      setActive(best)
+    })
+  }
+
   const go = (dir) => setOpen((o) => (o + dir + n) % n)
 
   // 키보드 / 스크롤잠금 / 확대(핀치·더블탭) 방지
@@ -61,21 +86,28 @@ export default function Gallery() {
       <Reveal>
         <p className="eyebrow">Gallery</p>
         <h2 className="section-title">우리의 순간들</h2>
-        <div className="gallery-grid">
+        <div className="gallery-carousel" ref={carRef} onScroll={onCarScroll}>
           {items.map((it, i) => (
             <button
               key={i}
-              className="g-tile"
+              className="gc-slide"
+              data-i={i}
               onClick={() => setOpen(i)}
               aria-label={`사진 ${i + 1} 크게 보기`}
             >
               {hasImages ? (
-                <img src={it} alt={`웨딩 사진 ${i + 1}`} loading="lazy" />
+                <img src={it} alt={`웨딩 사진 ${i + 1}`} loading="lazy" draggable={false} />
               ) : (
                 <span className="idx">{i + 1}</span>
               )}
             </button>
           ))}
+        </div>
+        <div className="gc-progress" aria-hidden="true">
+          <i style={{ width: `${((active + 1) / n) * 100}%` }} />
+        </div>
+        <div className="gc-count">
+          {active + 1} / {n}
         </div>
       </Reveal>
 
