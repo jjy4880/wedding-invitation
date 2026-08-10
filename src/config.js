@@ -134,7 +134,7 @@ export const WEDDING = {
     ],
     bride: [
       { relation: '신부', name: '권은미', bank: '신한은행', number: '110-434-188096' },
-      { relation: '신부 어머니', name: '김진선', bank: '국민은행', number: '010-240-373967' },
+      { relation: '신부 어머니', name: '김진선', bank: '국민은행', number: '010-24-0373-967' },
     ],
   },
 }
